@@ -5,3 +5,35 @@
     state: directory
     mode: '0755'
 
+- name: create work home {{WEB_HOME}}
+  file:
+    path: "{{WEB_HOME}}"
+    state: directory
+    mode: '0755'
+
+- name: copy docker-compose-web.service to /usr/lib/systemd/system/
+  template:
+    src: template/web_compose/docker-compose-web.service
+    dest: "/usr/lib/systemd/system/"
+
+- name: systemctl daemon-reload
+  shell: systemctl daemon-reload
+
+- name: enable and start docker-compose-web
+  systemd:
+    name: docker-compose-web
+    state: stopped
+    daemon_reload: yes
+    enabled: yes
+
+- name: copy docker-compose.yml to {{WEB_HOME}}
+  template:
+    src: template/web_compose/docker-compose.yml
+    dest: "{{WEB_HOME}}"
+
+- name: enable and start docker-compose-web
+  systemd:
+    name: docker-compose-web
+    state: restarted
+    daemon_reload: yes
+    enabled: yes

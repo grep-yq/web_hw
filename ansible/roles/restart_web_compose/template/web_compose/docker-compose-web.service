@@ -1,1 +1,14 @@
 [Unit]
+Description=Docker Application Container Engine
+Documentation=http://docs.docker.com
+After=network.target docker.service
+Wants=network.target
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/local/bin/docker-compose -f {{WEB_HOME}}/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose -f {{WEB_HOME}}/docker-compose.yml down
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target

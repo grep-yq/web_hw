@@ -1,3 +1,4 @@
 ---
 docker_image_version: latest
 dynamic_data_path: /data/dynamic
+WEB_HOME: /usr/local/src/web
