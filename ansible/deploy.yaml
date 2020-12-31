@@ -1,0 +1,10 @@
+---
+- name: Deploy image and stylesheet
+  hosts: web
+  become: yes
+  tasks:
+    - name: create dynamic data directory /data/dynamic
+      file:
+        path: "/data/dynamic"
+        state: directory
+        mode: '0755'

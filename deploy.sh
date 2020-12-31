@@ -2,13 +2,17 @@
 ## Automatically distinguish the environment
 ## Usage:  ./deploy.sh "<env>" "<private_key_file>"
 ## Owner: Grep
+cd $(dirname $0)
+WORK_HOME=$(pwd)
 
 run_ansible_deploy(){
 env=$1
 private_key_file=$2
+
+cd ${WORK_HOME}/ansible/
 sed -i '/private_key_file/d' ansible.cfg
 echo "private_key_file=${private_key_file}" >> ansible.cfg
-ansible-playbook -i ./intentory/${env}.txt deploy.yaml -e ${env}
+ansible-playbook -i ./intentory/${env}.txt deploy.yaml -e env=${env}
 }
 
 if [ "$1" == "test" ] || [ "$1" == "staging" ] || [ "$1" == "prod" ];then
