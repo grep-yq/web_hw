@@ -1,4 +1,3 @@
 # web_hw
 
-
-./deploy.sh  "<ENV>"  "<private_key_file>"
+This is the automatic deployment of web sites using Docker.
