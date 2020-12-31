@@ -1,5 +1,4 @@
 # web_hw
 
 
-1
-2
+./deploy.sh  "<ENV>"  "<private_key_file>"
