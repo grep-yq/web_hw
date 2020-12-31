@@ -3,8 +3,10 @@
   hosts: web
   become: yes
   tasks:
-    - name: create dynamic data directory /data/dynamic
-      file:
-        path: "/data/dynamic"
-        state: directory
-        mode: '0755'
+    - name: install_docker_compose
+      include_role:
+        name: install_docker_compose
+
+    - name: restart_web_compose
+      include_role:
+        name: restart_web_compose
