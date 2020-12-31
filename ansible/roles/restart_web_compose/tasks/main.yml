@@ -42,7 +42,7 @@
   shell: sleep 30s
 
 - name: Health check
-  shell: "docker ps -a | grep up | grep {{item}}"
+  shell: "docker ps -a | grep Up | grep {{item}}"
   with_items:
     - nginx
     - tomcat
