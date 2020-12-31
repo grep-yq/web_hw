@@ -1,0 +1,7 @@
+---
+- name: create dynamic data directory {{dynamic_data_path}}
+  file:
+    path: "{{dynamic_data_path}}"
+    state: directory
+    mode: '0755'
+

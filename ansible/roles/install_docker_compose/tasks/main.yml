@@ -1,0 +1,8 @@
+---
+- name: install docker-compose
+  copy:
+    src: "files/{{docker_compose_file_name}}"
+    dest: /usr/local/bin/docker-compose
+    owner: root
+    group: root
+    mode: '0755'
