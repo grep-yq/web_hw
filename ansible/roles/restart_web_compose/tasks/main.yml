@@ -37,3 +37,12 @@
     state: restarted
     daemon_reload: yes
     enabled: yes
+
+- name: wait 30s
+  shell: sleep 30s
+
+- name: Health check
+  shell: "docker ps -a | grep up | grep {{item}}"
+  with_items:
+    - nginx
+    - tomcat
