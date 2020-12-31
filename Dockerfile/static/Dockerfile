@@ -3,7 +3,7 @@ MAINTAINER Quan
 
 RUN rm -rf /usr/share/nginx/html/index.html /etc/nginx/conf.d/default.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
-COPY ../../static/* /usr/share/nginx/html/
+COPY ./static/* /usr/share/nginx/html/
 
 CMD ["nginx","-g","daemon off;"]
 

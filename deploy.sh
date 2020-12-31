@@ -29,6 +29,10 @@ cd ${WORK_HOME}
 
 BUILD_NGINX_STATIC_IMAGE(){
 cd ${WORK_HOME}/Dockerfile/static
+
+[ -d "${WORK_HOME}/Dockerfile/static/static" ] && rm -rf ${WORK_HOME}/Dockerfile/static/static
+cp -r ${WORK_HOME}/static/  ${WORK_HOME}/Dockerfile/static/
+
 docker build -t 192.168.242.91:5000/nginx:${NOW_TIME} .
 docker push 192.168.242.91:5000/nginx:${NOW_TIME}
 cd ${WORK_HOME}
@@ -36,6 +40,9 @@ cd ${WORK_HOME}
 
 BUILD_TOMCAT_DYNAMIC_IMAGE(){
 cd ${WORK_HOME}/Dockerfile/dynamic
+[ -d "${WORK_HOME}/Dockerfile/dynamic/dynamic.war" ] && rm -f ${WORK_HOME}/Dockerfile/dynamic/dynamic.war
+cp  {WORK_HOME}/dynamic/target/dynamic.war ${WORK_HOME}/Dockerfile/dynamic/dynamic.war
+
 docker build -t 192.168.242.91:5000/tomcat:${NOW_TIME} .
 docker push 192.168.242.91:5000/tomcat:${NOW_TIME}
 cd ${WORK_HOME}
